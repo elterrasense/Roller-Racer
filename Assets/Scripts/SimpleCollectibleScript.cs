@@ -1,0 +1,37 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent(typeof(AudioSource))]
+public class SimpleCollectibleScript : MonoBehaviour {
+
+	private Inventory ballInventory; // Instanciamos el inventario del jugador
+	public GameObject ball;
+	public bool rotate; // Si queremos que gire o no
+	public float rotationSpeed;
+	public AudioClip collectSound;
+	public AudioSource emisor;
+	public float volumen = 1f;
+	public GameObject collectEffect;
+
+	void Start () {
+		ballInventory = ball.GetComponent<Inventory>();
+	}
+
+	// Update is called once per frame
+	void Update () {
+
+		if (rotate)
+			transform.Rotate (Vector3.up * rotationSpeed * Time.deltaTime, Space.World);
+
+	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == "Player") {
+			AudioSource.PlayClipAtPoint(collectSound, this.gameObject.transform.position);
+			Destroy(gameObject);
+			ballInventory.quantity += 1;
+		}
+	}
+}
