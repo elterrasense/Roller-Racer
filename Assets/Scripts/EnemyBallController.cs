@@ -35,7 +35,7 @@ public class EnemyBallController : MonoBehaviour
         }
     }
 
-    // Detecta si el jugador entra al radio de la bola
+    // Detecta si el jugador entra en contacto con la bola enemiga
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -44,11 +44,12 @@ public class EnemyBallController : MonoBehaviour
         }
     }
 
-    // Mueve la bola en direccion del jugador
+    // Empuja al jugador
     private void PushBall(GameObject ball)
     {
         Rigidbody rb = ball.GetComponent<Rigidbody>();
         Vector3 direccion = ball.transform.position - transform.position;
+        direccion.y = 0.5f;
         direccion.Normalize();
         rb.AddForce(direccion * pushForce, ForceMode.Impulse);
     }
