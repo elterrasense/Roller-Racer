@@ -14,9 +14,9 @@ public class EnemyBallController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Obtenemos el jugador
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
-        //rb.useGravity = false;
     }
 
     void FixedUpdate()

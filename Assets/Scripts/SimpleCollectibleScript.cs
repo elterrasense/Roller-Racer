@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(AudioSource))]
 public class SimpleCollectibleScript : MonoBehaviour {
@@ -13,6 +14,7 @@ public class SimpleCollectibleScript : MonoBehaviour {
 	public AudioSource emisor;
 	public float volumen = 1f;
 	public GameObject collectEffect;
+	public TextMeshProUGUI scoreDisplay;
 
 	void Start () {
 		ballInventory = ball.GetComponent<Inventory>();
@@ -32,6 +34,7 @@ public class SimpleCollectibleScript : MonoBehaviour {
 			AudioSource.PlayClipAtPoint(collectSound, this.gameObject.transform.position);
 			Destroy(gameObject);
 			ballInventory.quantity += 1;
+			scoreDisplay.SetText("Score: " + ballInventory.quantity);
 		}
 	}
 }
