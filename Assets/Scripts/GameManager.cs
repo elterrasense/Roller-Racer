@@ -10,11 +10,12 @@ public class GameManager : MonoBehaviour
     public GameObject PauseCanvas;
     public float timeRemaining;
     private bool timerIsRunning = false;
-    private static bool GameIsPaused = false;
+    public bool GameIsPaused = false;
     public TextMeshProUGUI timerObject;
     public GameObject GameOverCanvas;
-  
-
+    public GameObject VictoryCanvas;
+    public GameObject SettingsCanvas;
+    
     void Start()
     {
         PauseCanvas.SetActive(false);
@@ -53,7 +54,6 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Time has run out!");
                 timeRemaining = 0;
                 timerIsRunning = false;
                 GameOver();
@@ -77,8 +77,8 @@ public class GameManager : MonoBehaviour
 
     void PauseGame()
     {
-        // Pausa el juego si la pantalla de GameOver no esta activa
-        if (!GameOverCanvas.activeSelf) {
+        // Pausa el juego si no hay otra pantalla activa
+        if (!GameOverCanvas.activeSelf && !VictoryCanvas.activeSelf && !SettingsCanvas.activeSelf) {
             PauseCanvas.SetActive(true);  
             Time.timeScale = 0f;
             GameIsPaused = true;
