@@ -5,7 +5,7 @@ using UnityEngine;
 public class Moneda : MonoBehaviour
 {
 
-    private BullInventari bullInventari;
+    private Inventory inventory;
 
     public AudioSource emisor;
     public AudioClip sonido;
@@ -13,7 +13,7 @@ public class Moneda : MonoBehaviour
 
     private void Start()
     {
-        bullInventari = GameObject.FindGameObjectWithTag("Player").GetComponent<BullInventari>();
+        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
     }
     void Update()
     {
@@ -30,7 +30,7 @@ public class Moneda : MonoBehaviour
             //emisor.PlayOneShot(sonido, volumen);
             AudioSource.PlayClipAtPoint(sonido, this.gameObject.transform.position);
             Destroy(gameObject);
-            bullInventari.Cantidad += 1;
+            inventory.quantity += 1;
         }
     }
 }

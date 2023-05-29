@@ -7,6 +7,9 @@ TagManager:
   - JumpPad
   - SpeedPad
   - Gem
+  - Enemy
+  - Water
+  - Timer
   layers:
   - Default
   - TransparentFX
